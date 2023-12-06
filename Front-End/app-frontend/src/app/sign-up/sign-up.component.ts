@@ -23,6 +23,15 @@ password: string = "";
     this.backendService.createUser(this.name,this.username,this.email,this.password).subscribe((res)=>{
      console.log(res);
 
+     if(res.messageToClient=== "Here is the created user: Core.Enteties.User"){
+      localStorage.setItem('user', res.responseData.id);
+      this.router.navigate(['home']);
+      window.location.reload()
+
+
+
+     }
+
 
 
       console.log(this.name)

@@ -18,9 +18,15 @@ password: string = '';
 
   logIn(){
     this.backendService.gatAllUsers().subscribe((res)=>{
-      res.forEach((e: { username: string; password: string; id: string; }) => {
+      res.responseData.forEach((e: { username: string; password: string; id: string; }) => {
+        console.log (res);
         if(e.username == this.username && e.password == this.password){
+
           localStorage.setItem('user', e.id);
+          this.router.navigate(['home']);
+          window.location.reload()
+
+
 
         }
 

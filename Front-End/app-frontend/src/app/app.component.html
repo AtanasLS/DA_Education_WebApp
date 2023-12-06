@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="logo" routerLink="home">
+  <div class="logo" >
     <img
       src="../assets/377238784_897993558379073_8072818336275597590_n.jpeg"
       alt="Logo"
@@ -12,10 +12,10 @@
   </div>
 
   <div class="button-holder">
-    <div class="log-in" *ngIf="!loggedIn">Log in</div>
-    <div class="sign-up" *ngIf="!loggedIn">Sign up</div>
-    <div class="my-courses" *ngIf="loggedIn" routerLink="my-courses" >My courses</div>
-    <div class="profile" *ngIf="loggedIn">
+    <div class="log-in" *ngIf="!user" (click)="switchPage(1)">Log in</div>
+    <div class="sign-up" *ngIf="!user" (click)="switchPage(2)">Sign up</div>
+    <div class="my-courses" *ngIf="user" (click)="switchPage(3)" >My courses</div>
+    <div class="profile" *ngIf="user"  (click)="switchPage(4)">
       <svg
         width="51"
         height="51"

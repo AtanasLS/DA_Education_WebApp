@@ -1,34 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BackendService } from './backend.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  user = localStorage.getItem('user');
+
   title = 'app-frontend';
 
   loggedIn: boolean = true;
   page: string = 'home';
 
+  constructor(private router: Router, private backendService: BackendService) {}
 
-  switchScreen(type: string) {
-    switch (type) {
-      case 'course':
-        this.page = type;
+  ngOnInit(): void {
+    this.user = localStorage.getItem('user');
+    console.log(this.user);
+    if(!this.user){
+    this.router.navigate(['login']);
+    }else{
+      this.router.navigate(['home']);
+
+    }
+  }
+
+  switchPage(page: number) {
+    switch (page) {
+      case 1:
+        this.router.navigate(['login']);
         break;
-
-      case 'create-course':
-        this.page = type;
+      case 2:
+        this.router.navigate(['signup']);
         break;
-
-      case 'my-courses':
-        this.page = type;
-        console.log('work')
+      case 3:
+        this.router.navigate(['my-courses']);
         break;
-
-      case 'create-course':
-        this.page = type;
+      case 4:
+        this.router.navigate(['home']);
         break;
     }
   }
